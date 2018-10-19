@@ -1,26 +1,26 @@
 @echo off  
-echo åœ¨ä¸ºæ‚¨é…ç½®ç¯å¢ƒå˜é‡ä¹‹å‰ï¼Œè¯·æ‚¨è¾“å…¥æ‚¨çš„Java sdkçš„å®‰è£…è·¯å¾„ï¼  
-SET /p JavaSDK_Dir=è¯·è¾“å…¥java sdkçš„å®‰è£…è·¯å¾„(å¦‚C:\Java\j2sdk1.5.0):  
+echo ÔÚÎªÄúÅäÖÃ»·¾³±äÁ¿Ö®Ç°£¬ÇëÄúÊäÈëÄúµÄJava sdkµÄ°²×°Â·¾¶£¡  
+SET /p JavaSDK_Dir=ÇëÊäÈëjava sdkµÄ°²×°Â·¾¶(ÈçC:\Java\j2sdk1.5.0):  
   
 ::*****************************************************************************************************  
-::                              ENVIRONMENT - ç³»ç»Ÿç¯å¢ƒè®¾ç½®ç®¡ç†(å…¨å±€)                                  *  
-::è·å–tempç¯å¢ƒå˜é‡                                                                                    *  
+::                              ENVIRONMENT - ÏµÍ³»·¾³ÉèÖÃ¹ÜÀí(È«¾Ö)                                  *  
+::»ñÈ¡temp»·¾³±äÁ¿                                                                                    *  
 ::wmic ENVIRONMENT where "name='temp'" get UserName,VariableValue                                     *  
-::æ›´æ”¹pathç¯å¢ƒå˜é‡å€¼,æ–°å¢e:\tools                                                                     *  
+::¸ü¸Äpath»·¾³±äÁ¿Öµ,ĞÂÔöe:\tools                                                                     *  
 ::wmic ENVIRONMENT where "name='path' and username='<system>'" set VariableValue="%path%;e:\tools"    *  
-::æ–°å¢ç³»ç»Ÿç¯å¢ƒå˜é‡home,å€¼ä¸º%HOMEDRIVE%%HOMEPATH%                                                      *  
+::ĞÂÔöÏµÍ³»·¾³±äÁ¿home,ÖµÎª%HOMEDRIVE%%HOMEPATH%                                                      *  
 ::wmic ENVIRONMENT create name="home",username="<system>",VariableValue="%HOMEDRIVE%%HOMEPATH%"       *  
-::åˆ é™¤homeç¯å¢ƒå˜é‡                                                                                    *  
+::É¾³ıhome»·¾³±äÁ¿                                                                                    *  
 ::wmic ENVIRONMENT where "name='home'" delete                                                         *  
 ::*****************************************************************************************************  
-  
-echo æ­£åœ¨è®¾ç½®JAVAç¯å¢ƒå˜é‡...  
-echo æ–°å»ºJAVA_HOMEï¼š%JavaSDK_Dir%  
+
+echo ÕıÔÚÉèÖÃJAVA»·¾³±äÁ¿...  
+echo ĞÂ½¨JAVA_HOME£º%JavaSDK_Dir%  
 wmic ENVIRONMENT create name="JAVA_HOME",username="<system>",VariableValue="%JavaSDK_Dir%"  
-echo å¢åŠ PATHï¼š;%%JAVA_HOME%%\bin;%%JAVA_HOME%%\jre\bin  
+echo Ôö¼ÓPATH£º;%%JAVA_HOME%%\bin;%%JAVA_HOME%%\jre\bin  
 wmic ENVIRONMENT where  "name='path' and username='<system>'" set VariableValue="%PATH%;%%JAVA_HOME%%\bin;%%JAVA_HOME%%\jre\bin"   
-echo æ–°å»ºCLASSPATHï¼š.;%%JAVA_HOME%%\lib;%%JAVA_HOME%%\lib\dt.jar;%%JAVA_HOME%%\lib\tools.jar;  
+echo ĞÂ½¨CLASSPATH£º.;%%JAVA_HOME%%\lib;%%JAVA_HOME%%\lib\dt.jar;%%JAVA_HOME%%\lib\tools.jar;  
 wmic ENVIRONMENT create name="CLASSPATH",username="<system>",VariableValue=".;%%JAVA_HOME%%\lib;%%JAVA_HOME%%\lib\dt.jar;%%JAVA_HOME%%\lib\tools.jar;"  
-  
+
 pause  
 

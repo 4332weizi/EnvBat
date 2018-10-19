@@ -1,27 +1,27 @@
 @echo off  
-echo åœ¨ä¸ºæ‚¨é…ç½®ç¯å¢ƒå˜é‡ä¹‹å‰ï¼Œè¯·æ‚¨è¾“å…¥æ‚¨çš„Tomcatçš„å®‰è£…è·¯å¾„ï¼  
-SET /p Tomcat_Dir=è¯·è¾“å…¥Tomcatçš„å®‰è£…è·¯å¾„(å¦‚C:\apache-tomcat-7.0.42):  
+echo ÔÚÎªÄúÅäÖÃ»·¾³±äÁ¿Ö®Ç°£¬ÇëÄúÊäÈëÄúµÄTomcatµÄ°²×°Â·¾¶£¡  
+SET /p Tomcat_Dir=ÇëÊäÈëTomcatµÄ°²×°Â·¾¶(ÈçC:\apache-tomcat-7.0.42):  
   
 ::*****************************************************************************************************  
-::                              ENVIRONMENT - ç³»ç»Ÿç¯å¢ƒè®¾ç½®ç®¡ç†(å…¨å±€)                                  *  
-::è·å–tempç¯å¢ƒå˜é‡                                                                                    *  
+::                              ENVIRONMENT - ÏµÍ³»·¾³ÉèÖÃ¹ÜÀí(È«¾Ö)                                  *  
+::»ñÈ¡temp»·¾³±äÁ¿                                                                                    *  
 ::wmic ENVIRONMENT where "name='temp'" get UserName,VariableValue                                     *  
-::æ›´æ”¹pathç¯å¢ƒå˜é‡å€¼,æ–°å¢e:\tools                                                                     *  
+::¸ü¸Äpath»·¾³±äÁ¿Öµ,ĞÂÔöe:\tools                                                                     *  
 ::wmic ENVIRONMENT where "name='path' and username='<system>'" set VariableValue="%path%;e:\tools"    *  
-::æ–°å¢ç³»ç»Ÿç¯å¢ƒå˜é‡home,å€¼ä¸º%HOMEDRIVE%%HOMEPATH%                                                      *  
+::ĞÂÔöÏµÍ³»·¾³±äÁ¿home,ÖµÎª%HOMEDRIVE%%HOMEPATH%                                                      *  
 ::wmic ENVIRONMENT create name="home",username="<system>",VariableValue="%HOMEDRIVE%%HOMEPATH%"       *  
-::åˆ é™¤homeç¯å¢ƒå˜é‡                                                                                    *  
+::É¾³ıhome»·¾³±äÁ¿                                                                                    *  
 ::wmic ENVIRONMENT where "name='home'" delete                                                         *  
 ::*****************************************************************************************************  
   
-echo æ­£åœ¨è®¾ç½®Tomcatç¯å¢ƒå˜é‡...  
-echo æ–°å»ºTOMCAT_HOMEï¼š%Tomcat_Dir%  
+echo ÕıÔÚÉèÖÃTomcat»·¾³±äÁ¿...  
+echo ĞÂ½¨TOMCAT_HOME£º%Tomcat_Dir%  
 wmic ENVIRONMENT create name="TOMCAT_HOME",username="<system>",VariableValue="%Tomcat_Dir%"  
-echo æ–°å»ºCATALINA_HOMEï¼š%Tomcat_Dir%  
+echo ĞÂ½¨CATALINA_HOME£º%Tomcat_Dir%  
 wmic ENVIRONMENT create name="CATALINA_HOME",username="<system>",VariableValue="%Tomcat_Dir%"  
-echo æ–°å»ºCATALINA_BASEï¼š%Tomcat_Dir%  
+echo ĞÂ½¨CATALINA_BASE£º%Tomcat_Dir%  
 wmic ENVIRONMENT create name="CATALINA_BASE",username="<system>",VariableValue="%Tomcat_Dir%"  
-echo å¢åŠ PATHï¼š;%Tomcat_Dir%\lib;%Tomcat_Dir%\bin  
+echo Ôö¼ÓPATH£º;%Tomcat_Dir%\lib;%Tomcat_Dir%\bin  
 wmic ENVIRONMENT where  "name='path' and username='<system>'" set VariableValue="%PATH%;%%CATALINA_HOME%%\lib;%%CATALINA_HOME%%\bin"   
   
 pause  
